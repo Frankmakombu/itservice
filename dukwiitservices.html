@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dukwi IT Services</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1.5em 0;
+      text-align: center;
+    }
+    nav {
+      background: #005fa3;
+      display: flex;
+      justify-content: center;
+      padding: 0.5em;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    .hero {
+      background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+      padding: 6em 2em;
+      color: white;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .content {
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+    }
+    .services, .products, .courses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      margin-top: 2em;
+    }
+    .service-box, .product-box, .course-box {
+      flex: 1;
+      min-width: 250px;
+      background-color: white;
+      padding: 1em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .service-box:hover, .product-box:hover, .course-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    footer {
+      background: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 3em;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 0.7em 1.2em;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1em;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .product-price, .course-price {
+      font-weight: bold;
+      color: #0077cc;
+      margin: 0.5em 0;
+    }
+    .add-to-cart {
+      background-color: #ff6b00;
+    }
+    .add-to-cart:hover {
+      background-color: #e05d00;
+    }
+    #cart-count {
+      background-color: #ff6b00;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+    .cart-icon {
+      position: relative;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
+    .duration {
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dukwi IT Services</h1>
+    <p>Your digital solutions partner</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#products">Products</a>
+    <a href="#courses">Courses</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About Us</a>
+    <a href="#" class="cart-icon" onclick="openCart()">Cart <span id="cart-count">0</span></a>
+  </nav>
+
+  <section class="hero">
+    <h1>Transforming Tech in Botswana</h1>
+    <button onclick="showMessage()">Get in Touch</button>
+  </section>
+
+  <section id="services" class="content">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-box">
+        <h3>Web Development</h3>
+        <p>Modern, responsive websites tailored to your brand and business needs.</p>
+      </div>
+      <div class="service-box">
+        <h3>IT Support</h3>
+        <p>Reliable and efficient tech support for individuals and organizations.</p>
+      </div>
+      <div class="service-box">
+        <h3>Cybersecurity</h3>
+        <p>Protect your digital assets with our cutting-edge security solutions.</p>
+      </div>
+      <div class="service-box">
+        <h3>Digital Forensics</h3>
+        <p>Investigate cyber incidents and recover digital evidence with our forensic experts.</p>
+      </div>
+      <div class="service-box">
+        <h3>Penetration Testing</h3>
+        <p>Identify vulnerabilities in your systems before attackers do with our ethical hacking services.</p>
+      </div>
+      <div class="service-box">
+        <h3>CCTV Systems Installation</h3>
+        <p>Professional installation of surveillance systems for homes and businesses.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="content">
+    <h2>Our Products</h2>
+    <div class="products">
+      <div class="product-box">
+        <h3>WiFi Extender</h3>
+        <p>Boost your WiFi signal to cover every corner of your home or office.</p>
+        <div class="product-price">P499.99</div>
+        <button class="add-to-cart" onclick="addToCart('WiFi Extender', 499.99)">Add to Cart</button>
+      </div>
+      <div class="product-box">
+        <h3>USB Card 64GB</h3>
+        <p>High-speed USB flash drive with 64GB storage capacity.</p>
+        <div class="product-price">P199.99</div>
+        <button class="add-to-cart" onclick="addToCart('USB Card 64GB', 199.99)">Add to Cart</button>
+      </div>
+      <div class="product-box">
+        <h3>Cybersecurity Toolkit</h3>
+        <p>Essential tools for cybersecurity professionals and enthusiasts.</p>
+        <div class="product-price">P899.99</div>
+        <button class="add-to-cart" onclick="addToCart('Cybersecurity Toolkit', 899.99)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="courses" class="content">
+    <h2>Our Courses</h2>
+    <div class="courses">
+      <div class="course-box">
+        <h3>Malware Analysis</h3>
+        <p>Learn to analyze and reverse engineer malicious software.</p>
+        <div class="duration">Duration: 6 weeks</div>
+        <div class="course-price">P2499.99</div>
+        <button class="add-to-cart" onclick="addToCart('Malware Analysis Course', 2499.99)">Enroll Now</button>
+      </div>
+      <div class="course-box">
+        <h3>Healthcare IT Support</h3>
+        <p>Specialized IT support training for healthcare environments.</p>
+        <div class="duration">Duration: 4 weeks</div>
+        <div class="course-price">P1999.99</div>
+        <button class="add-to-cart" onclick="addToCart('Healthcare IT Support Course', 1999.99)">Enroll Now</button>
+      </div>
+      <div class="course-box">
+        <h3>Hacking with Kali Linux</h3>
+        <p>Master ethical hacking techniques using Kali Linux tools.</p>
+        <div class="duration">Duration: 8 weeks</div>
+        <div class="course-price">P2999.99</div>
+        <button class="add-to-cart" onclick="addToCart('Hacking with Kali Linux Course', 2999.99)">Enroll Now</button>
+      </div>
+      <div class="course-box">
+        <h3>Zaproxy for Vulnerability Analysis</h3>
+        <p>Learn to use OWASP Zap for web application security testing.</p>
+        <div class="duration">Duration: 5 weeks</div>
+        <div class="course-price">P2299.99</div>
+        <button class="add-to-cart" onclick="addToCart('Zaproxy Course', 2299.99)">Enroll Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="content">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:wamakombufrank@gmail.com">wamakombufrank@gmail.com</a></p>
+    <p>Phone: <a href="tel:74535046">74535046</a></p>
+    <form id="contactForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section id="about" class="content">
+    <h2>About Us</h2>
+    <p>Dukwi IT Services is a leading technology provider in Botswana, offering a wide range of IT solutions, products, and training courses to help businesses and individuals thrive in the digital age.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Dukwi IT Services. All rights reserved.</p>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCart()">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <div id="cart-total"></div>
+      <button onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    // Shopping cart functionality
+    let cart = [];
+    
+    function addToCart(name, price) {
+      cart.push({name, price});
+      updateCartCount();
+      showAlert(`${name} added to cart!`);
+    }
+    
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+    
+    function openCart() {
+      const modal = document.getElementById('cartModal');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Your cart is empty</p>';
+        cartTotal.innerHTML = '';
+      } else {
+        cartItems.innerHTML = cart.map(item => 
+          `<div>${item.name} - P${item.price.toFixed(2)}</div>`
+        ).join('');
+        
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        cartTotal.innerHTML = `<h3>Total: P${total.toFixed(2)}</h3>`;
+      }
+      
+      modal.style.display = 'block';
+    }
+    
+    function closeCart() {
+      document.getElementById('cartModal').style.display = 'none';
+    }
+    
+    function checkout() {
+      if (cart.length === 0) {
+        showAlert('Your cart is empty!');
+        return;
+      }
+      
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      showAlert(`Thank you for your order! Total: P${total.toFixed(2)}\nWe'll contact you shortly to complete your purchase.`);
+      
+      // In a real app, you would send this data to your server
+      console.log('Order placed:', cart);
+      
+      // Clear the cart
+      cart = [];
+      updateCartCount();
+      closeCart();
+    }
+    
+    // Contact form handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      // In a real app, you would send this data to your server
+      console.log('Contact form submitted:', {name, email, message});
+      
+      showAlert(`Thank you, ${name}! Your message has been sent. We'll contact you soon at ${email}.`);
+      
+      // Reset the form
+      this.reset();
+    });
+    
+    // Helper functions
+    function showMessage() {
+      showAlert("Thank you for reaching out! We'll respond shortly.");
+    }
+    
+    function showAlert(message) {
+      alert(message);
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('cartModal');
+      if (event.target === modal) {
+        closeCart();
+      }
+    }
+    
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
